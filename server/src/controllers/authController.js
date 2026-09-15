@@ -38,11 +38,21 @@ export const login = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
   const user = await User.findOne({ email: email.toLowerCase() });
+  // -----
+  console.log('LOGIN DEBUG:', {
+  email: email.toLowerCase(),
+  userFound: !!user,
+  role: user?.role,
+});
+  // -----
   if (!user) {
     return res.status(401).json({ message: 'Invalid email or password' });
   }
 
   const match = await bcrypt.compare(password, user.passwordHash);
+  // -----
+  console.log('PASSWORD DEBUG:', { match });
+  // ------
   if (!match) {
     return res.status(401).json({ message: 'Invalid email or password' });
   }
