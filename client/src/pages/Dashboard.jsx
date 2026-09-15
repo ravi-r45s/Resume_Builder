@@ -64,20 +64,45 @@ export default function Dashboard() {
   }
 
   if (user?.role !== 'admin' && !user?.accessGranted) {
-    return (
-      <div className="access-page">
-        <div className="access-card">
-          <div className="access-icon">✓</div>
-          <p className="eyebrow-plain">Account created</p>
-          <h1>Waiting for approval</h1>
-          <p className="muted">Hi {user?.name?.split(' ')[0] || 'there'}, an administrator needs to grant your account access before you can use ResumeForge.</p>
-          <div className="access-status"><span /> Access request pending</div>
-          <p className="muted small">This page will turn into your normal dashboard after an administrator approves your account.</p>
-          <button className="btn btn-ghost" onClick={logout}>Log out</button>
+  return (
+    <div className="access-page">
+      <div className="access-card">
+        <div className="access-icon">₹</div>
+
+        <p className="eyebrow-plain">ResumeForge Premium Access</p>
+
+        <h1>Get access to ResumeForge</h1>
+
+        <p className="muted">
+          Hi {user?.name?.split(' ')[0] || 'there'}, your account has been created.
+          Pay ₹99 to activate access to the ResumeForge resume builder.
+        </p>
+
+        <div>
+          <a
+  href="upi://pay?pa=9123196230@fam&pn=Your%20Name&am=99&cu=INR"
+  className="paymentBtn"
+>
+  Pay ₹99 & Unlock ResumeForge
+</a>
         </div>
+
+        <div className="access-status">
+          <span /> Payment & approval pending
+        </div>
+
+        <p className="muted small">
+          After completing the ₹99 payment, your account will be reviewed and
+          access will be activated by the administrator.
+        </p>
+
+        <button className="btn btn-ghost" onClick={logout}>
+          Log out
+        </button>
       </div>
-    );
-  }
+    </div>
+  );
+}
 
   return (
     <div className="dash">

@@ -1765,3 +1765,189 @@ input:focus, textarea:focus, select:focus {
     font-size: 9px;
   }
 }
+/* ================================
+   PREMIUM PAYMENT BUTTON
+   ================================ */
+
+.paymentBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 56px;
+  margin: 22px 0 16px;
+  padding: 15px 24px;
+
+  background: linear-gradient(135deg, #1f8f55, #157347);
+  color: #fff;
+
+  border: none;
+  border-radius: 12px;
+
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+
+  box-shadow:
+    0 8px 20px rgba(21, 115, 71, 0.22),
+    0 2px 5px rgba(21, 115, 71, 0.12);
+
+  cursor: pointer;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    filter 0.18s ease;
+}
+
+.paymentBtn:hover {
+  color: #fff;
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+
+  box-shadow:
+    0 12px 26px rgba(21, 115, 71, 0.28),
+    0 3px 7px rgba(21, 115, 71, 0.15);
+}
+
+.paymentBtn:active {
+  transform: translateY(0);
+  box-shadow:
+    0 5px 12px rgba(21, 115, 71, 0.2);
+}
+
+/* Small payment reassurance */
+.paymentBtn::after {
+  content: '  •  Secure UPI Payment';
+  font-size: 10px;
+  font-weight: 600;
+  opacity: 0.82;
+  margin-left: 7px;
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .paymentBtn {
+    min-height: 54px;
+    padding: 14px 16px;
+    font-size: 15px;
+  }
+
+  .paymentBtn::after {
+    font-size: 9px;
+  }
+}
+/* ============================================================
+   PAYMENT BUTTON — RESPONSIVE
+   ============================================================ */
+
+.paymentBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 56px;
+  margin: 22px 0 16px;
+  padding: 14px 20px;
+
+  background: linear-gradient(135deg, #1f8f55, #157347);
+  color: #fff !important;
+
+  border: 0;
+  border-radius: 12px;
+
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none !important;
+
+  box-sizing: border-box;
+
+  box-shadow:
+    0 8px 20px rgba(21, 115, 71, 0.22),
+    0 2px 5px rgba(21, 115, 71, 0.12);
+
+  cursor: pointer;
+
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    filter 0.18s ease;
+}
+
+/* Desktop hover */
+.paymentBtn:hover {
+  color: #fff !important;
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+
+  box-shadow:
+    0 12px 26px rgba(21, 115, 71, 0.28),
+    0 3px 7px rgba(21, 115, 71, 0.15);
+}
+
+/* Click */
+.paymentBtn:active {
+  transform: translateY(0);
+  box-shadow:
+    0 5px 12px rgba(21, 115, 71, 0.2);
+}
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .paymentBtn {
+    min-height: 54px;
+    margin: 20px 0 15px;
+    padding: 14px 18px;
+    font-size: 15.5px;
+    border-radius: 11px;
+  }
+}
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 640px) {
+  .paymentBtn {
+    width: 100%;
+    min-height: 54px;
+    margin: 18px 0 14px;
+    padding: 14px 16px;
+
+    font-size: 15px;
+    font-weight: 800;
+
+    border-radius: 11px;
+
+    box-shadow:
+      0 7px 16px rgba(21, 115, 71, 0.20),
+      0 2px 4px rgba(21, 115, 71, 0.10);
+  }
+
+  /* Mobile par hover transform nahi */
+  .paymentBtn:hover {
+    transform: none;
+  }
+
+  .paymentBtn:active {
+    transform: scale(0.98);
+  }
+}
+
+/* ============================================================
+   VERY SMALL PHONES
+   ============================================================ */
+
+@media (max-width: 380px) {
+  .paymentBtn {
+    min-height: 52px;
+    padding: 13px 12px;
+    font-size: 14px;
+    border-radius: 10px;
+  }
+}
