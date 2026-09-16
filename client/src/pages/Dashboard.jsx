@@ -4,6 +4,7 @@ import { useAuth } from '../context/AuthContext.jsx';
 import { fetchResumes, createResume, deleteResume, duplicateResume } from '../api/resumes.js';
 import { blankResume } from '../utils/resumeDefaults.js';
 import ResumeCard from '../components/ResumeCard.jsx';
+import upiQr from '../assets/upi-qr.jpeg';
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -12,6 +13,7 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [creating, setCreating] = useState(false);
+  const [showPaymentQr, setShowPaymentQr] = useState(false);
 
   useEffect(() => {
     if (user?.role === 'admin' || user?.accessGranted) load();
@@ -64,45 +66,79 @@ export default function Dashboard() {
   }
 
   if (user?.role !== 'admin' && !user?.accessGranted) {
-  return (
-    <div className="access-page">
-      <div className="access-card">
-        <div className="access-icon">₹</div>
+    return (
+      <div className="access-page">
+        <div className="access-card">
+          <div className="access-icon">₹</div>
 
-        <p className="eyebrow-plain">ResumeForge Premium Access</p>
+          <p className="eyebrow-plain">ResumeForge Premium Access</p>
 
-        <h1>Get access to ResumeForge</h1>
+          <h1>Get access to ResumeForge</h1>
 
-        <p className="muted">
-          Hi {user?.name?.split(' ')[0] || 'there'}, your account has been created.
-          Pay ₹99 to activate access to the ResumeForge resume builder.
-        </p>
+          <p className="muted">
+            Hi {user?.name?.split(' ')[0] || 'there'}, your account has been created.
+            Pay ₹99 to activate access to the ResumeForge resume builder.
+          </p>
 
-        <div>
-          <a
-  href="upi://pay?pa=9123196230@fam&pn=Your%20Name&am=99&cu=INR"
-  className="paymentBtn"
->
-  Pay ₹99 & Unlock ResumeForge
-</a>
+          <button
+            type="button"
+            className="paymentBtn"
+            onClick={() => setShowPaymentQr(true)}
+          >
+            Pay ₹99 & Unlock ResumeForge
+          </button>
+
+          <div className="access-status">
+            <span /> Payment & approval pending
+          </div>
+
+          <p className="muted small">
+            After completing the ₹99 payment, your account will be reviewed and
+            access will be activated by the administrator.
+          </p>
+
+          <button className="btn btn-ghost" onClick={logout}>
+            Log out
+          </button>
         </div>
+        {showPaymentQr && (
+          <div
+            className="qr-modal-overlay"
+            onClick={() => setShowPaymentQr(false)}
+          >
+            <div
+              className="qr-modal"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                type="button"
+                className="qr-modal-close"
+                onClick={() => setShowPaymentQr(false)}
+                aria-label="Close"
+              >
+                ×
+              </button>
 
-        <div className="access-status">
-          <span /> Payment & approval pending
-        </div>
+              <h2>Pay ₹99</h2>
 
-        <p className="muted small">
-          After completing the ₹99 payment, your account will be reviewed and
-          access will be activated by the administrator.
-        </p>
+              <p className="muted">
+                Scan this QR code with any UPI app
+              </p>
 
-        <button className="btn btn-ghost" onClick={logout}>
-          Log out
-        </button>
+              <img
+                src={upiQr}
+                alt="UPI QR code for ₹99 payment"
+              />
+
+              <p className="qr-modal-note">
+                After payment, your account will be reviewed and access will be activated.
+              </p>
+            </div>
+          </div>
+        )}
       </div>
-    </div>
-  );
-}
+    );
+  }
 
   return (
     <div className="dash">
